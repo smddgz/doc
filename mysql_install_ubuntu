@@ -1,0 +1,19 @@
+cat /etc/os-release 
+  查看系统版本
+mysql-server_8.0.39-1ubuntu22.04_amd64.deb-bundle.tar 
+  下载完整包
+dpkg -i *.deb 
+  安装mysql解压后的所有包
+apt-get install -f  
+  安装mysql需要的系统依赖，此处直接执行会自动安装mysql依赖
+systemctl start mysql
+systemctl enable mysql
+  启动mysql，设置开机自启
+vi /etc/mysql/mysql.conf.d/mysqld.cnf
+bind-address = 0.0.0.0
+systemctl restart mysql
+  开启远程登录
+mysql -u root -p
+create user 'gg'@'%' identified by '123456';
+grant all on *.* to 'gg'@'%';
+  创建用户，并授权
